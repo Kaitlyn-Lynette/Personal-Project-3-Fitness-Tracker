@@ -186,6 +186,8 @@ function populateChart(data) {
   });
 }
 
+console.log(workout)
+
 function duration(data) {
   let durations = [];
 

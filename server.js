@@ -29,7 +29,7 @@ app.get('/exercise',(req,res) => {
 });
 //Retrieves the stats.html
 app.get('/stats', (req,res)=> {
-  res.sendFile(path.join(__dirname, '...public/stats.html'));
+  res.sendFile(path.join(__dirname, './public/stats.html'));
 });
 //Retrieves the api/workouts
 app.get('/api/workouts', (req, res) => {
@@ -45,7 +45,7 @@ app.get('/api/workouts', (req, res) => {
   });
 });
 
-//Add exercises to a PREVIOUS workout plan 
+//Add exercises to a PREVIOUS workout plan
 app.put('/api/workouts/:id', (req, res) => {
   db.Workout.update(
     { _id: req.params.id },
@@ -63,7 +63,6 @@ app.put('/api/workouts/:id', (req, res) => {
 });
 
 //Add new exercises to a NEW workout plan.
-
 app.post('/api/workouts', (req, res) => {
   db.Workout.create(req.body, (err, data) => {
     // If statement to catch errors
@@ -77,6 +76,17 @@ app.post('/api/workouts', (req, res) => {
     }
   });
 });
+// Get Request to retrieve all workouts
+app.get('/api/workouts/range', (req,res)=> {
+  db.Workout.find({},(err,data) => {
+    if(err) {
+      console.log(err);
+    } else{
+      res.json(data);
+    }
+  });
+});
+
 
 
 app.listen(PORT, () => {

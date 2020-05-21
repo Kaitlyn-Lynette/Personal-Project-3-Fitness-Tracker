@@ -2,6 +2,8 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
+//The scheme matches the format of the seed data
+
 const WorkoutSchema = new Schema({
   day: {
     type: Date,
@@ -41,6 +43,9 @@ const WorkoutSchema = new Schema({
       },
     },
   ],
+  totalDuration: {
+    type: Number,
+  },
 });
 
 // WorkoutSchema.methods.totalDuration = function () {
