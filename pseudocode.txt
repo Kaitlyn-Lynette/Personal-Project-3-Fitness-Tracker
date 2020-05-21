@@ -1,0 +1,50 @@
+The user should be able to:
+
+Name of the Database: workout
+Name of the Collection: Workouts
+
+  * Add exercises to a PREVIOUS workout plan
+
+TODO: Retrieve a workout plan in the database's collection and update
+
+app.post("/update/:id", (req,res)=> {
+  db.notes.update(
+    {
+      _id: mongojs.ObjectId(req.params.id)
+    },
+    {
+      $set: {
+        title: req.body.title,
+        note: req.body.note,
+        modified: Date.now()
+      }
+    },
+    (error,data)=> {
+      if(error) {
+        res.send(error);
+      } else{
+        res.send(data);
+      }
+    }
+  );
+});
+
+  * Add new exercises to a new workout plan.
+
+TODO: SAVE a workout to the database's collection using the // POST:
+
+app.post("/submit",(req,res) =>{
+  console.log(req.body)
+  db.notes.insert(req.body,(err,data)=> {
+    if(err) {
+      res.send(error);
+    } else {
+      //sending the data 
+      res.send(data);
+    }
+  })
+})
+
+  * View multiple the combined weight of multiple exercises on the `stats` page.
+
+  
