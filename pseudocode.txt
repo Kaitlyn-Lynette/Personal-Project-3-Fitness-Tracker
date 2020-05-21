@@ -5,10 +5,11 @@ Name of the Collection: Workouts
 
   * Add exercises to a PREVIOUS workout plan
 
-TODO: Retrieve a workout plan in the database's collection and update
+TODO: Retrieve a workout plan in the database's collection and update using a PUT request 
 
 app.post("/update/:id", (req,res)=> {
   db.notes.update(
+//Need to have mongojs.ObjectID 
     {
       _id: mongojs.ObjectId(req.params.id)
     },
@@ -31,7 +32,8 @@ app.post("/update/:id", (req,res)=> {
 
   * Add new exercises to a new workout plan.
 
-TODO: SAVE a workout to the database's collection using the // POST:
+TODO: SAVE a workout to the database's collection using the // POST: because it's a brand new workout 
+// Both insert and create are similar 
 
 app.post("/submit",(req,res) =>{
   console.log(req.body)
@@ -46,5 +48,7 @@ app.post("/submit",(req,res) =>{
 })
 
   * View multiple the combined weight of multiple exercises on the `stats` page.
+
+  // GET 
 
   

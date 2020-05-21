@@ -9,7 +9,7 @@ const WorkoutSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  excercises:[
+  exercises:[
     {
       type: {
         type: String,
@@ -48,14 +48,22 @@ const WorkoutSchema = new Schema({
   },
 });
 
-// WorkoutSchema.methods.totalDuration = function () {
-//   let total = 0;
-//   exercises.forEach (excercise => {
-//     totalDuration += excercise.duration;
-//   });
-//   this.totalDuration = total;
-//   return this.totalDuration;
-// };
+WorkoutSchema.methods.setTotalDuration = function () {
+  let total = 0;
+  this.exercises.forEach((exercise) => {
+    total += exercise.duration;
+  });
+  this.totalDuration = total;
+  console.log(this.totalDuration);
+  return this.totalDuration;
+};
+
+
+WorkoutSchema.methods.addExercise = function (exercise) {
+  console.log('This the add exercise method',exercise);
+  console.log('this', this.exercises);
+  return this.exercises.push(exercise);
+};
 
 const Workout = mongoose.model('Workout', WorkoutSchema);
 module.exports = Workout;

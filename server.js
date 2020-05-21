@@ -40,33 +40,33 @@ app.get('/api/workouts', (req, res) => {
       // Display Data in JSON data format
     } else {
       res.json(data);
-      console.log(data);
+      // console.log(data);
     }
   });
 });
 
-//Add exercises to a PREVIOUS workout plan
-app.put('/api/workouts/:id', (req, res) => {
-  db.Workout.update(
-    { _id: req.params.id },
-    {
-      $push: { exercises: req.body },
-    },
-    (err, data) => {
-      if (err) {
-        console.log(err);
-      } else {
-        res.json(data);
-      }
-    }
-  );
+//Update exercises to a PREVIOUS workout plan
+app.put('/api/workouts/:id', async (req, res) => {
+  try {
+    const currentWorkout = await db.Workout.findOne({_id:req.params.id});
+    // console.log('This is the the currentWorkout',currentWorkout);
+    currentWorkout.addExercise(req.body);
+    currentWorkout.setTotalDuration();
+    // currentWorkout.save();
+    const savedWorkout = await currentWorkout.save();
+    res.json(savedWorkout);
+  }
+
+  catch (err){
+    throw err;
+  }
 });
 
 //Add new exercises to a NEW workout plan.
 app.post('/api/workouts', (req, res) => {
   db.Workout.create(req.body, (err, data) => {
     // If statement to catch errors
-    console.log(req.body);
+    // console.log(req.body);
     if (err) {
       res.send(err);
       // Display Data in JSON data format
@@ -86,7 +86,6 @@ app.get('/api/workouts/range', (req,res)=> {
     }
   });
 });
-
 
 
 app.listen(PORT, () => {
