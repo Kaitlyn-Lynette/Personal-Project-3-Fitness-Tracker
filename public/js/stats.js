@@ -1,5 +1,6 @@
 // get all workout data from back-end
 
+//It's like an AJAX request so you dont have to include another package 
 fetch('/api/workouts/range')
   .then(response => {
     return response.json();
@@ -186,12 +187,11 @@ function populateChart(data) {
   });
 }
 
-console.log(workout)
-
 function duration(data) {
   let durations = [];
 
   data.forEach(workout => {
+    console.log('This is workout object in stats.js', workout)
     workout.exercises.forEach(exercise => {
       durations.push(exercise.duration);
     });
