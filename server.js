@@ -19,6 +19,8 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/workout', {
   useNewUrlParser: true,
 });
 
+mongood.connect(MONGODB_URI);
+
 //Retrieves the index.html
 app.get('/', (req,res) =>{
   res.send(index.html);
