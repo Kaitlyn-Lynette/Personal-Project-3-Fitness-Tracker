@@ -15,7 +15,7 @@ app.use(express.json());
 
 app.use(express.static('public'));
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://krod:kawok2327@ds029715.mlab.com:29715/heroku_rnskh897', {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://krod:kawok2327@ds041198.mlab.com:41198/heroku_8zld2wlb', {
   useNewUrlParser: true,
   useMongoClient: true,
 });
